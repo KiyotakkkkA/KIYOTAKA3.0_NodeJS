@@ -50,9 +50,9 @@ async function request(){
 
 }
 
-// request()
+request()
 
-function getData(_txt_) {
+async function getData(_txt_) {
     let day_id;
 
     for (let md in day_modify) {
