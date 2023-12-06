@@ -29,5 +29,6 @@ module.exports = {
     
     info_messages:{
         'INFO_NoHomework': `[${spec_symbols["SB_success"]}] Ничего не задали!`,
+        'INFO_SendSuccess': `[${spec_symbols["SB_success"]}] Ваше сообщение успешно доставлено!`,
     }
 }
