@@ -9,6 +9,7 @@ const menuActivity = require("./Activities/modeMainMenu")
 const lessonsActivity = require("./Activities/modeLessonsMenu")
 const homeworkActivity = require("./Activities/modeHomeworkMenu")
 const ratingActivity = require("./Activities/modeRatingMenu")
+const feedbackActivity = require("./Activities/modeFeedbackMenu")
 
 var __BLOCKED__ = false;
 
@@ -65,6 +66,9 @@ _bot.bot.on("message", msg => {
     
             // FUNC 4 - RATING
             ratingActivity.ratingActivity(text, ChatId, msg)
+
+            // FUNC 5 - FEEDBACK
+            feedbackActivity.feedbackActivity(text, ChatId, msg)
     
         }
         catch (e){
