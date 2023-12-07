@@ -10,8 +10,7 @@ const lessonsActivity = require("./Activities/modeLessonsMenu")
 const homeworkActivity = require("./Activities/modeHomeworkMenu")
 const ratingActivity = require("./Activities/modeRatingMenu")
 const feedbackActivity = require("./Activities/modeFeedbackMenu")
-
-var __BLOCKED__ = false;
+const adminpanelActivity = require("./Activities/modeAdminPanelMenu")
 
 // Random int func
 function randint(min, max) {
@@ -25,25 +24,22 @@ _bot.bot.on("message", msg => {
     var text = '';
 
     if (got_text !== undefined){
+        text = got_text
 
-        // BLOCKED MODE //
-        if (Number(msg.from.id) === root.__ROOT_ID__ && msg.text.includes('@ddat')){
-            __BLOCKED__ = !__BLOCKED__
-            _bot.BotMsg(ChatId, `[${spec_symbols["SB_success"]}] Статус блокировки изменён на: |${__BLOCKED__}|`)
-            return
-        }
-        if (__BLOCKED__){
-            _bot.BotMsg(ChatId, `[${spec_symbols["SB_error"]}] Заблокировано`)
-            return
+        adminpanelActivity.AdminPanelActivity(text, ChatId, msg)
+
+        if (adminpanelActivity.Settings.__BLOCKED__){
+            if (!adminpanelActivity.enableBot(text, ChatId, msg)){
+                _bot.BotMsg(ChatId, `[${spec_symbols["SB_error"]}] Заблокировано`)
+                return
+            }
         }
 
         if (msg.text.includes('@db')){
             _bot.BotMsg(ChatId, `[${spec_symbols["SB_success"]}] Меню скрыто`)
             return
         }
-        // BLOCKED MODE //
 
-        text = got_text
         try {
             // INTRODUCE
             if (text == "/start"){
@@ -51,7 +47,7 @@ _bot.bot.on("message", msg => {
             }
     
             // MAIN KIYO BLOCK
-            if (menuActivity.mainMenuActivity(text, ChatId)) return 
+            if (menuActivity.mainMenuActivity(text, ChatId, msg)) return 
     
             // FUNC 1 - LESSONS CHECK
             if (lessonsActivity.lessonsGetActivity(text, ChatId)) return

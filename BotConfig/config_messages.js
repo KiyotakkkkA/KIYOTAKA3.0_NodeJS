@@ -23,7 +23,7 @@ module.exports = {
     
         'ERROR_NullDatabase': `[${spec_symbols["SB_error"]}] Ошибка! Здесь ничего нет!`,
         'ERROR_TeacherNotFound': `[${spec_symbols["SB_error"]}] Ошибка! Преподаватель не найден!`,
-        'ERROR_FullQueue': `[${spec_symbols["SB_error"]}] Ошибка! Кто то уже этим пользуется!`,
+        'ERROR_NoPerm': `[${spec_symbols["SB_error"]}] Ошибка! Вы не имеете доступ к этому разделу!`,
         'ERROR_CompletedTask': `[${spec_symbols["SB_error"]}] Ошибка! Вы уже выполнили это задание!`
     },
     
