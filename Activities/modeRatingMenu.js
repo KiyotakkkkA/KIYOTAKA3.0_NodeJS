@@ -80,16 +80,19 @@ function ratingActivity(text, ChatId, msg){
 
     if (text == "Профиль"){
         db_.DbGetData("rating").then(r => checkAuth(r, msg, ChatId))
+        return true
     }
 
     if (text == "Зарегистрироваться"){
         _bot.BotMsg(ChatId, `|${spec_symbols["SB_write"]} Выберите себе имя (Ответь на это сообщение)`)
+        return true
     }
 
     if (msg.reply_to_message) {
         if (msg.reply_to_message.text == `|${spec_symbols["SB_write"]} Выберите себе имя (Ответь на это сообщение)`){
             db_.DbAddData("rating", [msg.from.id, msg.from.username, text, 0], 4)
             _bot.BotMsg(ChatId, `|${spec_symbols["SB_success"]} Вы успешно зарегистрировались`)
+            return true
         }
     }
 
@@ -99,6 +102,7 @@ function ratingActivity(text, ChatId, msg){
             if (id){
                 db_.DataBases.changeDB(db_.DataBases.current_db, db_.DataBases.people)
                 db_.DbGetData('rating').then(r => getName(r, msg, id, ChatId));
+                return true
         
             }
             else {
@@ -109,15 +113,17 @@ function ratingActivity(text, ChatId, msg){
 
     if (text == "Таблица рейтинга"){
         db_.DbGetData("rating").then(r => showTable(r, ChatId))
+        return true
     }
     if (text == "Сообщить о выполнении ДЗ"){
         _bot.BotMsg(ChatId, `[${spec_symbols["SB_success"]}] Какое по номеру задание вы выполнили?\n (ответьте на это сообщение)`)
         homeW.knowHomework(ChatId)
+        return true
         
     }
 
 
-    return true;
+    return false;
 }
 
 module.exports = {ratingActivity}

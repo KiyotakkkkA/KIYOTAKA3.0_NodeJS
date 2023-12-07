@@ -1,6 +1,6 @@
 const _bot = require("../../ROOT/BOT")
 const logg = require("../LogsUtility")
-const db_ = require("../../ExternalCommands/DatabaseUtility")
+const db_ = require("../DatabaseUtility")
 
 const {error_messages, spec_symbols} = require("../../BotConfig/config_messages")
 const {day_modify} = require("../../BotConfig/config_general")

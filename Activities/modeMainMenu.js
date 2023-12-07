@@ -18,6 +18,7 @@ function mainMenuActivity(text, ChatId){
                 keyboard: keys
             }
         })
+        return true
     }
     if (text == "Вернуться в меню"){
         Modes.lessonsMode = false;
@@ -27,8 +28,9 @@ function mainMenuActivity(text, ChatId){
                 keyboard: keys
             }
         })
+        return true
     }
-    return true;
+    return false
 }
 
 module.exports = {mainMenuActivity, Modes}

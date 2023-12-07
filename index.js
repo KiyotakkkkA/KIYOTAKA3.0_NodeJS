@@ -51,24 +51,25 @@ _bot.bot.on("message", msg => {
             }
     
             // MAIN KIYO BLOCK
-            menuActivity.mainMenuActivity(text, ChatId)
+            if (menuActivity.mainMenuActivity(text, ChatId)) return 
     
             // FUNC 1 - LESSONS CHECK
-            lessonsActivity.lessonsGetActivity(text, ChatId)
+            if (lessonsActivity.lessonsGetActivity(text, ChatId)) return
     
             // FUNC 2 - HOMEWORK MANAGER
-            homeworkActivity.homeworkManageActivity(text, ChatId, msg)
+            if (homeworkActivity.homeworkManageActivity(text, ChatId, msg)) return
     
             // FUNC 3 - GETTING TEACHERS
             if (text == "Преподаватели"){
                 _bot.BotMsg(ChatId, "| Педсостав |\n" + gteachers.getTeachers(msg.text))
+                return
             }
     
             // FUNC 4 - RATING
-            ratingActivity.ratingActivity(text, ChatId, msg)
+            if (ratingActivity.ratingActivity(text, ChatId, msg)) return
 
             // FUNC 5 - FEEDBACK
-            feedbackActivity.feedbackActivity(text, ChatId, msg)
+            if (feedbackActivity.feedbackActivity(text, ChatId, msg)) return
     
         }
         catch (e){

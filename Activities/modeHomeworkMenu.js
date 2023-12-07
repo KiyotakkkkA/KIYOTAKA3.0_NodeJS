@@ -68,13 +68,13 @@ function homeworkManageActivity(text, ChatId, msg){
     
         // ADD
         if (AHW.AddHWProcessing(msg, ChatId)){
-            return 
+            return true
         }
         // ADD
         
         // EDIT
         if (EHW.EditHWProcessing(msg, ChatId)){
-            return
+            return true
         }
         // EDIT
 
@@ -89,7 +89,7 @@ function homeworkManageActivity(text, ChatId, msg){
                 logg.logger(msg, 'Удалил задание')
 
                 _bot.BotMsg(ChatId, `[${spec_symbols["SB_success"]}] Пользователь <u>${msg.from.first_name}</u> успешно удалил задание`)
-                return
+                return true
             }
             else {
                 _bot.BotMsg(ChatId, error_messages["ERROR_NotANumber"])
@@ -97,7 +97,7 @@ function homeworkManageActivity(text, ChatId, msg){
         }
         // DELETE
     }
-    return true;
+    return false;
 }
 
 module.exports = {homeworkManageActivity, DataClass}
