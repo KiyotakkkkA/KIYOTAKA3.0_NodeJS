@@ -1,4 +1,5 @@
 const _bot = require("../ROOT/BOT")
+const root = require("../ROOT/ROOT")
 
 var Modes = {
     lessonsMode: false,
@@ -7,11 +8,14 @@ var Modes = {
 
 var keys = [
     ["Домашние задания", "Расписание", "Преподаватели"],
-    ["Профиль", "Топики [WIP]", "Обратная связь"],
+    ["Профиль", "...", "Обратная связь"],
     ["..."]
 ]
 
-function mainMenuActivity(text, ChatId){
+function mainMenuActivity(text, ChatId, msg){
+    if (msg.from.id == root.__ROOT_ID__){
+        keys[2] = ["Админ-панель"]
+    }
     if (text == "/menu"){
         _bot.bot.sendMessage(ChatId, 'Выбери раздел:', {
             reply_markup: {
