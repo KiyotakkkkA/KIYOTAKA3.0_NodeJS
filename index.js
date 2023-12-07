@@ -30,46 +30,52 @@ _bot.bot.on("message", msg => {
 
         if (adminpanelActivity.Settings.__BLOCKED__){
             if (!adminpanelActivity.enableBot(text, ChatId, msg)){
-                _bot.BotMsg(ChatId, `[${spec_symbols["SB_error"]}] Заблокировано`)
+                _bot.BotMsg(ChatId, "[" + spec_symbols['SB_error'] + "] Администратор отключил приём сообщений!")
                 return
             }
         }
 
-        if (msg.text.includes('@db')){
-            _bot.BotMsg(ChatId, `[${spec_symbols["SB_success"]}] Меню скрыто`)
-            return
+        else{
+
+            try {
+
+                if (msg.text.includes('@db')){
+                    _bot.BotMsg(ChatId, `[${spec_symbols["SB_success"]}] Меню скрыто`)
+                    return
+                }
+    
+                // INTRODUCE
+                if (text == "/start"){
+                    _bot.BotMsg(ChatId, "Привет, я <b><u>Киё</u></b> - лучший бот для <b><u>лучших студентов</u></b> РТУ МИРЭА!\n\nИспользуй <b><u>/menu</u></b> чтобы увидеть мой функционал")
+                }
+        
+                // MAIN KIYO BLOCK
+                if (menuActivity.mainMenuActivity(text, ChatId, msg)) return 
+        
+                // FUNC 1 - LESSONS CHECK
+                if (lessonsActivity.lessonsGetActivity(text, ChatId)) return
+        
+                // FUNC 2 - HOMEWORK MANAGER
+                if (homeworkActivity.homeworkManageActivity(text, ChatId, msg)) return
+        
+                // FUNC 3 - GETTING TEACHERS
+                if (text == "Преподаватели"){
+                    _bot.BotMsg(ChatId, "| Педсостав |\n" + gteachers.getTeachers(msg.text))
+                    return
+                }
+        
+                // FUNC 4 - RATING
+                if (ratingActivity.ratingActivity(text, ChatId, msg)) return
+    
+                // FUNC 5 - FEEDBACK
+                if (feedbackActivity.feedbackActivity(text, ChatId, msg)) return
+        
+            }
+            catch (e){
+                console.log('cant handle message', e)
+            }
+
         }
 
-        try {
-            // INTRODUCE
-            if (text == "/start"){
-                _bot.BotMsg(ChatId, "Привет, я <b><u>Киё</u></b> - лучший бот для <b><u>лучших студентов</u></b> РТУ МИРЭА!\n\nИспользуй <b><u>/menu</u></b> чтобы увидеть мой функционал")
-            }
-    
-            // MAIN KIYO BLOCK
-            if (menuActivity.mainMenuActivity(text, ChatId, msg)) return 
-    
-            // FUNC 1 - LESSONS CHECK
-            if (lessonsActivity.lessonsGetActivity(text, ChatId)) return
-    
-            // FUNC 2 - HOMEWORK MANAGER
-            if (homeworkActivity.homeworkManageActivity(text, ChatId, msg)) return
-    
-            // FUNC 3 - GETTING TEACHERS
-            if (text == "Преподаватели"){
-                _bot.BotMsg(ChatId, "| Педсостав |\n" + gteachers.getTeachers(msg.text))
-                return
-            }
-    
-            // FUNC 4 - RATING
-            if (ratingActivity.ratingActivity(text, ChatId, msg)) return
-
-            // FUNC 5 - FEEDBACK
-            if (feedbackActivity.feedbackActivity(text, ChatId, msg)) return
-    
-        }
-        catch (e){
-            console.log('cant handle message', e)
-        }
     }
 })

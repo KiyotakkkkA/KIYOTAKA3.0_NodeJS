@@ -18,27 +18,29 @@ var admin_buttons = [
     ["Сделать объявление", "..."]
 ]
 
-function checkPermission(msg, command){
-    if (msg.from.id != root.__ROOT_ID__){
+function checkPermission(text, msg, command, ChatId) {
+    if (text == command && msg.from.id != root.__ROOT_ID__){
         _bot.BotMsg(ChatId, error_messages['ERROR_NoPerm'])
         return false
     }
-    if (msg.text != command){
-        return false
+
+    if (text == command && msg.from.id == root.__ROOT_ID__){
+        return true
     }
-    return true
+
+    return false
 }
 
 function enableBot(text, ChatId, msg){
 
     if (text == "Включить бота" && msg.from.id == root.__ROOT_ID__){
         Settings.__BLOCKED__ = false
-        _bot.BotMsg(ChatId, "[" + spec_symbols['SB_success'] + "] Статус блокировки изменён на: " + Settings.__BLOCKED__)
+        _bot.BotMsg(ChatId, "[" + spec_symbols['SB_success'] + "] Бот включен...")
         return true
     }
 
     if (msg.from.id == root.__ROOT_ID__){
-        _bot.bot.sendMessage(ChatId, "Бот неактивен", {
+        _bot.bot.sendMessage(ChatId, "[" + spec_symbols["SB_error"] + "] Бот неактивен", {
             reply_markup: {
             keyboard: [
                 ["Включить бота"]
@@ -63,9 +65,9 @@ function AdminPanelActivity(text, ChatId, msg){
         }
         })
     }
-    if (checkPermission(msg, keysModel.changeMode)){
+    if (checkPermission(text, msg, keysModel.changeMode, ChatId)) {
         Settings.__BLOCKED__ = !Settings.__BLOCKED__
-        _bot.BotMsg(ChatId, "[" + spec_symbols['SB_success'] + "] Статус блокировки изменён на: " + Settings.__BLOCKED__)
+        _bot.BotMsg(ChatId, "[" + spec_symbols['SB_success'] + "] Бот выключен...")
         return true
     }
 }
