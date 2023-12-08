@@ -48,7 +48,7 @@ module.exports = {
     
         'russia': 'Основы российской государственности',
         'russia_lectures': 'Основы российской государственности [Лекция]',
-        'russia_seminars': 'Основы российской государственности [Лекция]',
+        'russia_seminars': 'Основы российской государственности [Практика]',
     
         'introduce': 'Введение в проф. деятельность',
         'introduce_lectures': 'Введение в проф. деятельность [Лекция]',
@@ -59,37 +59,21 @@ module.exports = {
     },
     
     to_code_translate: {
-        'инфе': 'inf',
-        'инфа': 'inf',
-        'информатике': 'inf',
         'информатика': 'inf',
     
-        'матан': 'mathAnalysis',
-        'матану': 'mathAnalysis',
-        'матанализ': 'mathAnalysis',
         'матанализу': 'mathAnalysis',
     
-        'линал': 'linearAlgebra',
-        'линалу': 'linearAlgebra',
-        'линейной': 'linearAlgebra',
+        'линейная алгебра': 'linearAlgebra',
     
         'физика': 'physics',
-        'физике': 'physics',
-    
-        'процедурной': 'procedure',
-        'процедурная': 'procedure',
-        'процедурка': 'procedure',
-        'процедурке': 'procedure',
+
+        'процедурное программирование': 'procedure',
     
         'орг': 'russia',
-        'основам': 'russia',
     
-        'введению': 'introduce',
-        'введение': 'introduce',
-        'проф': 'introduce',
+        'впд': 'introduce',
     
         'история': 'history',
-        'истории': 'history',
     }
     
     

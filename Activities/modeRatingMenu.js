@@ -84,12 +84,12 @@ function ratingActivity(text, ChatId, msg){
     }
 
     if (text == "Зарегистрироваться"){
-        _bot.BotMsg(ChatId, `|${spec_symbols["SB_write"]} Выберите себе имя (Ответь на это сообщение)`)
+        _bot.BotMsg(ChatId, `|${spec_symbols["SB_write"]} Выберите себе имя (воспользуйтесь опцией 'ответить' на это сообщение)`)
         return true
     }
 
     if (msg.reply_to_message) {
-        if (msg.reply_to_message.text == `|${spec_symbols["SB_write"]} Выберите себе имя (Ответь на это сообщение)`){
+        if (msg.reply_to_message.text == `|${spec_symbols["SB_write"]} Выберите себе имя (воспользуйтесь опцией 'ответить' на это сообщение)`){
             db_.DbAddData("rating", [msg.from.id, msg.from.username, text, 0], 4)
             _bot.BotMsg(ChatId, `|${spec_symbols["SB_success"]} Вы успешно зарегистрировались`)
             return true
@@ -97,7 +97,7 @@ function ratingActivity(text, ChatId, msg){
     }
 
     if (msg.reply_to_message) {
-        if (msg.reply_to_message.text == `[${spec_symbols["SB_success"]}] Какое по номеру задание вы выполнили?\n (ответьте на это сообщение)`){
+        if (msg.reply_to_message.text == `[${spec_symbols["SB_success"]}] Какое по номеру задание вы выполнили?\n (воспользуйтесь опцией 'ответить' на это сообщение)`){
             id = Number(text)
             if (id){
                 db_.DataBases.changeDB(db_.DataBases.current_db, db_.DataBases.people)
@@ -116,7 +116,7 @@ function ratingActivity(text, ChatId, msg){
         return true
     }
     if (text == "Сообщить о выполнении ДЗ"){
-        _bot.BotMsg(ChatId, `[${spec_symbols["SB_success"]}] Какое по номеру задание вы выполнили?\n (ответьте на это сообщение)`)
+        _bot.BotMsg(ChatId, `[${spec_symbols["SB_success"]}] Какое по номеру задание вы выполнили?\n (воспользуйтесь опцией 'ответить' на это сообщение)`)
         homeW.knowHomework(ChatId)
         return true
         

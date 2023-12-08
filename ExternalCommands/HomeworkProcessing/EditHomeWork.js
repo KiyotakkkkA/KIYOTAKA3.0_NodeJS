@@ -9,11 +9,11 @@ function EditHWProcessing(msg, ChatId){
     var dc = require("../../Activities/modeHomeworkMenu")
     db_.DataBases.changeDB(db_.DataBases.current_db, db_.DataBases.db)
     
-    if (msg.reply_to_message.text === `${spec_symbols["SB_edit"]} Выбери ID нужной записи (ответьте на это сообщение)`)
+    if (msg.reply_to_message.text === `${spec_symbols["SB_edit"]} Выбери ID нужной записи (воспользуйтесь опцией 'ответить' на это сообщение)`)
     {
         dc.DataClass.setIdValue(Number(msg.text))
         if (dc.DataClass.id_){
-            _bot.BotMsg(ChatId, `${spec_symbols["SB_edit"]} Редактирование предмета (ответьте на это сообщение)`)
+            _bot.BotMsg(ChatId, `${spec_symbols["SB_edit"]} Редактирование предмета (воспользуйтесь опцией 'ответить' на это сообщение)`)
         }
         else {
             _bot.BotMsg(ChatId, error_messages["ERROR_NotANumber"])
@@ -21,22 +21,22 @@ function EditHWProcessing(msg, ChatId){
         }
 
     }
-    if (msg.reply_to_message.text === `${spec_symbols["SB_edit"]} Редактирование предмета (ответьте на это сообщение)`)
+    if (msg.reply_to_message.text === `${spec_symbols["SB_edit"]} Редактирование предмета (воспользуйтесь опцией 'ответить' на это сообщение)`)
     {
         if (typeof msg.text === "string"){
             dc.DataClass.setSubjectValue(msg.text)
-            _bot.BotMsg(ChatId, `${spec_symbols["SB_edit"]} Редактирование задания (ответьте на это сообщение)`)
+            _bot.BotMsg(ChatId, `${spec_symbols["SB_edit"]} Редактирование задания (воспользуйтесь опцией 'ответить' на это сообщение)`)
         }
         else {
             _bot.BotMsg(ChatId, error_messages['ERROR_NotAString'])
             return 0
         }
     }
-    if (msg.reply_to_message.text === `${spec_symbols["SB_edit"]} Редактирование задания (ответьте на это сообщение)`)
+    if (msg.reply_to_message.text === `${spec_symbols["SB_edit"]} Редактирование задания (воспользуйтесь опцией 'ответить' на это сообщение)`)
     {
         if (typeof msg.text === "string"){
             dc.DataClass.setTaskValue(msg.text)
-            _bot.BotMsg(ChatId, `|${spec_symbols["SB_edit"]} Редактирование даты (ответьте на это сообщение)`)
+            _bot.BotMsg(ChatId, `|${spec_symbols["SB_edit"]} Редактирование даты (воспользуйтесь опцией 'ответить' на это сообщение)`)
             _bot.BotMsg(ChatId, `|${spec_symbols["SB_edit"]} Формат - день недели словом\n|${spec_symbols["SB_edit"]} [Например: пятница]\n\n|${spec_symbols["SB_edit"]} Стандартный срок - 1 неделя\n|${spec_symbols["SB_edit"]} Для изменения воспользуйтесь\n|${spec_symbols["SB_edit"]} суффиксом +[N]нед, где N - число недель\n|${spec_symbols["SB_edit"]} [Например: среда +2нед]`)   
         }
         else {
@@ -44,7 +44,7 @@ function EditHWProcessing(msg, ChatId){
             return 0
         }
     }
-    if (msg.reply_to_message.text === `|${spec_symbols["SB_edit"]} Редактирование даты (ответьте на это сообщение)`)
+    if (msg.reply_to_message.text === `|${spec_symbols["SB_edit"]} Редактирование даты (воспользуйтесь опцией 'ответить' на это сообщение)`)
     {
         if (typeof msg.text === "string"){
 

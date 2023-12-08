@@ -79,7 +79,7 @@ function homeworkManageActivity(text, ChatId, msg){
         // EDIT
 
         // DELETE
-        if (msg.reply_to_message.text === `[🗑] Выбери ID нужной записи (ответьте на это сообщение)`){
+        if (msg.reply_to_message.text === `[🗑] Выбери ID нужной записи (воспользуйтесь опцией 'ответить' на это сообщение)`){
 
             id_ = Number(msg.text)
             if (id_){

@@ -36,7 +36,13 @@ function knowHomework(chat, target_id=''){
         if (end === ''){
             end += info_messages["INFO_NoHomework"]
         }
-        _bot.BotMsg(chat, `${end}`)
+        _bot.bot.sendMessage(chat, `${end}`, {reply_markup: {
+            keyboard: [
+                ["✅ Добавить ДЗ", "🔎 Узнать ДЗ"],
+                ["🖋️ Редактировать ДЗ", "🗑 Удалить ДЗ"],
+                ["Вернуться в меню"]
+            ]
+        }})
     }
 
     return 

@@ -11,6 +11,7 @@ const homeworkActivity = require("./Activities/modeHomeworkMenu")
 const ratingActivity = require("./Activities/modeRatingMenu")
 const feedbackActivity = require("./Activities/modeFeedbackMenu")
 const adminpanelActivity = require("./Activities/modeAdminPanelMenu")
+const getTeachersActivity = require("./Activities/modeGetTeachersMenu")
 
 // Random int func
 function randint(min, max) {
@@ -59,10 +60,7 @@ _bot.bot.on("message", msg => {
                 if (homeworkActivity.homeworkManageActivity(text, ChatId, msg)) return
         
                 // FUNC 3 - GETTING TEACHERS
-                if (text == "Преподаватели"){
-                    _bot.BotMsg(ChatId, "| Педсостав |\n" + gteachers.getTeachers(msg.text))
-                    return
-                }
+                if (getTeachersActivity.getTeachersActivity(text, ChatId, msg)) return
         
                 // FUNC 4 - RATING
                 if (ratingActivity.ratingActivity(text, ChatId, msg)) return

@@ -1,4 +1,4 @@
-const {teachers, lessons_code, to_code_translate} = require("../BotConfig/config_lectures")
+const {teachers, lessons_code, to_code_translate, error_messages} = require("../BotConfig/config_lectures")
 
 function getTeachers(t){
     var text0 = ''
@@ -40,21 +40,30 @@ return text0
 }
 
 function getTeacherBySurname(txt_){
-    let sr_ = String(txt_.split('?')[1])
     let text1 = '';
 
     for (var x in teachers){
-        if (teachers[x].includes(sr_)){
+        if (teachers[x].includes(txt_)){
             text1 += `ФИО: <b>${teachers[x]}</b>\n\n`
             text1 += `Предмет: <b>${lessons_code[x]}</b>\n\n`
-            break
+            return text1
+        }
+    }
+
+    for (var x in to_code_translate){
+        if (x.includes(txt_.toLowerCase())){
+            text1 += `Предмет: <b>${lessons_code[to_code_translate[x] + "_lectures"]}</b>\n`
+            text1 += `ФИО: <b>${teachers[to_code_translate[x] + "_lectures"]}</b>\n\n`
+
+            text1 += `Предмет: <b>${lessons_code[to_code_translate[x] + "_seminars"]}</b>\n`
+            text1 += `ФИО: <b>${teachers[to_code_translate[x] + "_seminars"]}</b>\n\n`
+            return text1
         }
     }
 
     if (text1 === ''){
-        return error_messages["ERROR_TeacherNotFound"]
+        return error_messages["ERROR_NotFound"]
     }
-    return text1
 }
 
 module.exports = {getTeachers, getTeacherBySurname}
