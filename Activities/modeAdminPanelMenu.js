@@ -10,12 +10,14 @@ var Settings = {
 var keysModel = {
     changeMode: "Отключить бота",
     ban: "Заблокировать пользователя",
-    broadcast: "Сделать объявление"
+    broadcast: "Сделать объявление",
+    back: "Вернуться в меню"
 }
 
 var admin_buttons = [
-    [keysModel.changeMode, "Заблокировать пользователя"],
-    ["Сделать объявление", "..."]
+    [keysModel.changeMode, "Заблокировать пользователя [WIP]"],
+    ["Сделать объявление [WIP]", "..."],
+    [keysModel.back]
 ]
 
 function checkPermission(text, msg, command, ChatId) {
